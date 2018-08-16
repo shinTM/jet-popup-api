@@ -35,6 +35,19 @@ if ( ! class_exists( 'Jet_Popup_Api_Register' ) ) {
 		public function __construct() {
 
 			$this->register_taxonomy();
+
+			add_filter( 'jet-popups/post-type/register/supports', [ $this, 'post_type_supports' ] );
+		}
+
+		/**
+		 * [post_type_supports description]
+		 * @param  [type] $supports [description]
+		 * @return [type]           [description]
+		 */
+		public function post_type_supports( $supports ) {
+			$supports[] = 'thumbnail';
+
+			return $supports;
 		}
 
 		/**

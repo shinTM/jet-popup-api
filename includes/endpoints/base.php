@@ -32,15 +32,6 @@ abstract class Endpoint_Base {
 	}
 
 	/**
-	 * Check if is route requires key validation
-	 *
-	 * @return boolean
-	 */
-	public function is_private() {
-		return false;
-	}
-
-	/**
 	 * Returns arguments config
 	 *
 	 * @return [type] [description]

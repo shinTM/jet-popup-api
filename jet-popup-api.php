@@ -107,6 +107,14 @@ if ( ! class_exists( 'Jet_Popup_Api' ) ) {
 		}
 
 		/**
+		 * [elementor description]
+		 * @return [type] [description]
+		 */
+		public function elementor() {
+			return \Elementor\Plugin::$instance;
+		}
+
+		/**
 		 * Manually init required modules.
 		 *
 		 * @return void
