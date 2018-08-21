@@ -70,6 +70,7 @@ class Endpoint_Presets extends Endpoint_Base {
 		}
 
 		$popups = [];
+		$order  = 0;
 
 		if ( $popup_query->have_posts() ) {
 			while ( $popup_query->have_posts() ) : $popup_query->the_post();
@@ -78,6 +79,10 @@ class Endpoint_Presets extends Endpoint_Base {
 				$popup_title = $popup_query->post->post_title;
 
 				$popup_thumbnail = get_the_post_thumbnail_url( $popup_id, 'full' );
+
+				$install_counter = get_post_meta( $popup_id, '_jet_popup_install_counter', true );
+
+				$install_counter = ! empty( $install_counter ) ? $install_counter : 0;
 
 				$categories = [];
 
@@ -93,8 +98,13 @@ class Endpoint_Presets extends Endpoint_Base {
 					'id'       => $popup_id,
 					'title'    => $popup_title,
 					'thumb'    => $popup_thumbnail ? $popup_thumbnail : \Elementor\Utils::get_placeholder_image_src(),
-					'category' => $categories
+					'category' => $categories,
+					'order'    => $order,
+					'install'  => $install_counter,
 				];
+
+				$order = $order + 1;
+
 			endwhile;
 		}
 

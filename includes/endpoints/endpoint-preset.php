@@ -82,6 +82,16 @@ class Endpoint_Preset extends Endpoint_Base {
 			}
 		}
 
+		$install_counter = get_post_meta( $popup_id, '_jet_popup_install_counter', true );
+
+		if ( ! empty( $install_counter ) ) {
+			$install_counter = $install_counter + 1;
+		} else {
+			$install_counter = 1;
+		}
+
+		update_post_meta( $popup_id, '_jet_popup_install_counter', $install_counter );
+
 		$result = array(
 			'success' => true,
 			'data'    => json_encode( $export_data ),
